@@ -39,8 +39,12 @@ const config = {
 };
   const response = await axios(config);
   const div = document.getElementById("con");
-  let newContent = document.createTextNode(JSON.stringify(response.data,null,10));
-  console.log(newContent);
+  const icon = response.data[0].poster_path;
+  const newContent = document.createTextNode(JSON.stringify(response.data,null,10));
+  const newIcon = document.createElement("img");
+  const source = ("https://www.themoviedb.org/t/p/w600_and_h900_bestv2"+icon)
+  newIcon.src=source;
+  document.getElementById('con').appendChild(newIcon);
   div.appendChild(newContent);
   // document.getElementById('textbox').innerHTML = "Results: <br> <br {response.data}";
 }
