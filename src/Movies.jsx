@@ -18,22 +18,22 @@ export default function Movies() {
 
   React.useEffect(() => {
     axios.get(baseURL).then((response) => {
-    setPost(response.data)
-  });
-}, []);
+      setPost(response.data)
+    });
+  }, []);
 
-if (!post) return null;
+  if (!post) return null;
 
 
-let mov = post.join(' <br> ');
-// document.write(mov);
-// let mov = post.join('\r\n');
+  let mov = post.join(' <br> ');
+  // document.write(mov);
+  // let mov = post.join('\r\n');
 
-return(
-  <div className="popular"
-    dangerouslySetInnerHTML={{__html: mov}}
-  />
-);
+  return (
+    <div className="popular"
+      dangerouslySetInnerHTML={{ __html: mov }}
+    />
+  );
 }
 
 // async function GetMovies() {

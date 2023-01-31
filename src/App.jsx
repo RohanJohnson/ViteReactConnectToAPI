@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Search from "./Search";
 import HomePage from "./HomePage";
+import Test from "./Skeleton";
 
 
 export default function App() {
@@ -16,11 +17,12 @@ export default function App() {
           <Route path="/" exact element={<HomePage />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/searchmovie" element={<Search />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </div>
     </Router>
 
-    
+
   );
 }
 
