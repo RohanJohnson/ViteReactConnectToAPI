@@ -5,6 +5,12 @@ import Button from '@mui/material/Button';
 import { ThemeProvider } from "@emotion/react";
 import {theme} from "./Nav"
 
+function handleEnter(event){
+  if (event.key==="Enter"){
+    event.preventDefault();
+    document.querySelector('.searchButton').click();
+  }
+}
 
 export default function Search() {
   return (
@@ -13,9 +19,9 @@ export default function Search() {
     <ThemeProvider theme={theme}>
        <form>
        <label htmlFor= "search">Search movies: </label>
-         <input type="text" id="search" name="title" ></input>
+         <input onKeyDown={handleEnter} type="text" id="search" name="title" ></input>
          {/* <input type="submit" value="Search"></input> */}
-         <Button variant="contained" onClick={GetMovie}>Search</Button>
+         <Button className="searchButton" variant="contained" onClick={GetMovie}>Search</Button>
        </form>
        <div id="con"></div>
        </ThemeProvider>
@@ -30,6 +36,10 @@ const baseURL = 'http://localhost:3000/search';
 
 export async function GetMovie(event) {
   event.preventDefault();
+  if (!document.getElementById('search').value){
+    alert('Please make sure to type something to search');
+    return;
+  }
   try {
     const searchURL = baseURL + "?title=" + document.getElementById('search').value;
     const config = {
@@ -47,20 +57,23 @@ export async function GetMovie(event) {
       throw new Error('Sorry, movie not found.');
     }
     const div = document.getElementById("con");
-    const icon = info[0].poster_path;
+    const icon = info.poster_path;
     // const newContent = document.createTextNode(JSON.stringify(info, null, 10));
     const newIcon = document.createElement("img");
     const source = ("https://www.themoviedb.org/t/p/w300_and_h450_bestv2" + icon)
     newIcon.src = source;
-    document.getElementById('con').appendChild(newIcon);
+    
+
+    console.log(info)
 
 
     const table = document.createElement("table");
     
-    info.forEach(obj => {
+    // info.forEach(obj => {
       
-      let objKey = (Object.keys(obj));
-      let objValue = (Object.values(obj));
+      let objKey = (Object.keys(info));
+      console.log (objKey)
+      let objValue = (Object.values(info));
       let i = 0;
       objKey.forEach(element => {
         let newRow = table.insertRow(-1);
@@ -70,19 +83,30 @@ export async function GetMovie(event) {
 
         let newCell2 = newRow.insertCell(1);
         let newText2 = document.createTextNode(objValue[i]);
-        console.log(i);
         newCell2.appendChild(newText2);
         i=i+1;
       })
   
-    });
-    document.getElementById('con').appendChild(table);
+    // });
+
+
+    try{
+      div.firstElementChild.replaceWith(newIcon);
+      div.lastElementChild.replaceWith(table);
+    }catch{
+    div.appendChild(newIcon);
+    div.appendChild(table);
+    }
     
 
 
     // div.appendChild(newContent);
     } catch (e) {
     console.log(e);
+    if(confirm('Something went wrong, would you like to refresh?')){
+      window.scrollTo(0, 0);
+      location.reload()
+    }
   }
 }
 

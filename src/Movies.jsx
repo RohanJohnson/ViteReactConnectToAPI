@@ -30,7 +30,7 @@ let mov = post.join(' <br> ');
 // let mov = post.join('\r\n');
 
 return(
-  <div class="popular"
+  <div className="popular"
     dangerouslySetInnerHTML={{__html: mov}}
   />
 );
