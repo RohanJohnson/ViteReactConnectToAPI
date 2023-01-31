@@ -9,7 +9,7 @@ import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography'
 import { key } from "localforage";
-import {Table, TableRow, TableBody, TableCell} from '@mui/material'
+import { Table, TableRow, TableBody, TableCell } from '@mui/material'
 
 const baseURL = 'http://localhost:3000/search';
 
@@ -62,38 +62,42 @@ export default function Search() {
             {/* <input type="submit" value="Search"></input> */}
             <LoadingButton loading={loading} className="searchButton" variant="contained" type="submit">Search</LoadingButton>
           </form>
+
+          {loading ?
+            <Stack className="skele" spacing={1}>
+
+              <Skeleton variant="rounded" width={300} height={450} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+              <Skeleton variant="rounded" width={500} height={60} />
+
+            </Stack> : <h1>test</h1>
+          }
+
           {info != null ?
             <div id="con">
               <Typography varient="h1" >{info.title}</Typography>
               <Table>
                 <TableBody>
-                  {Object.keys(info).filter((prop)=>exclude.indexOf(prop) === -1).map((key) =>  <TableRow>
+                  {Object.keys(info).filter((prop) => exclude.indexOf(prop) === -1).map((key) => <TableRow>
                     <TableCell>{key}</TableCell>
                     <TableCell>{`${info[key]}`}</TableCell>
-                  </TableRow> )}
+                  </TableRow>)}
                 </TableBody>
               </Table>
-              <pre>{JSON.stringify(info, null, 2)}  </pre>
-            </div> : <h1>Loading...</h1>}
-          <Stack className="skele" spacing={1}>
+            </div> : <h1>loading</h1>}
 
-            <Skeleton variant="rounded" width={300} height={450} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-            <Skeleton variant="rounded" width={500} height={60} />
-
-          </Stack>
         </ThemeProvider>
       </div>
     </div>
@@ -130,7 +134,7 @@ export async function GetMovie(event, loading, setLoading) {
 
 
 
-    
+
   } catch (e) {
     console.log(e);
     if (confirm('Something went wrong, would you like to refresh?')) {
