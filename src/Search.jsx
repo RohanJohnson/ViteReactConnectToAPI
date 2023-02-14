@@ -52,6 +52,7 @@ export default function Search() {
     setInfo(response.data);
   }
 
+
   return (
     <div className="searchcontainer">
       <div className="searchbar">
@@ -63,7 +64,7 @@ export default function Search() {
             <LoadingButton loading={loading} className="searchButton" variant="contained" type="submit">Search</LoadingButton>
           </form>
 
-          {loading ?
+          {loading ? 
             <Stack className="skele" spacing={1}>
 
               <Skeleton variant="rounded" width={300} height={450} />
@@ -82,21 +83,24 @@ export default function Search() {
               <Skeleton variant="rounded" width={500} height={60} />
               <Skeleton variant="rounded" width={500} height={60} />
 
-            </Stack> : <h1>test</h1>
+            </Stack> : <h1> </h1>
           }
 
           {info != null ?
             <div id="con">
+              <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${info['poster_path']}`}></img>
               <Typography varient="h1" >{info.title}</Typography>
-              <Table>
-                <TableBody>
-                  {Object.keys(info).filter((prop) => exclude.indexOf(prop) === -1).map((key) => <TableRow>
-                    <TableCell>{key}</TableCell>
-                    <TableCell>{`${info[key]}`}</TableCell>
-                  </TableRow>)}
-                </TableBody>
-              </Table>
-            </div> : <h1>loading</h1>}
+              <div classname="table">
+                <Table size="small">
+                  <TableBody>
+                    {Object.keys(info).filter((prop) => exclude.indexOf(prop) === -1).map((key) => <TableRow>
+                      <TableCell>{key}</TableCell>
+                      <TableCell>{`${info[key]}`}</TableCell>
+                    </TableRow>)}
+                  </TableBody>
+                </Table>
+              </div>
+            </div> : <h1></h1>}
 
         </ThemeProvider>
       </div>
