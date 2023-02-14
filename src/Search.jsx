@@ -4,12 +4,10 @@ import axios from 'axios';
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./Nav"
 import { LoadingButton } from '@mui/lab';
-import Test from './Skeleton'
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography'
-import { key } from "localforage";
-import { Table, TableRow, TableBody, TableCell } from '@mui/material'
+import { Table, TableRow, TableBody, TableCell, Box, LinearProgress, Fade } from '@mui/material'
 
 const baseURL = 'http://localhost:3000/search';
 
@@ -64,30 +62,39 @@ export default function Search() {
             <LoadingButton loading={loading} className="searchButton" variant="contained" type="submit">Search</LoadingButton>
           </form>
 
-          {loading ? 
-            <Stack className="skele" spacing={1}>
+          {loading ?
+            <div className="loading">
 
-              <Skeleton variant="rounded" width={300} height={450} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
-              <Skeleton variant="rounded" width={500} height={60} />
+              <Box sx={{margin:'0 20% 0', width: '60%' }}>
+                <LinearProgress />
+              </Box>
 
-            </Stack> : <h1> </h1>
+
+              <Stack className="skele" spacing={1}>
+
+                <Skeleton variant="rounded" width={300} height={450} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={500} height={60} />
+
+              </Stack>
+            </div> : <h1> </h1>
           }
 
           {info != null ?
             <div id="con">
+            <br></br><br></br><br></br>
               <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${info['poster_path']}`}></img>
               <Typography varient="h1" >{info.title}</Typography>
               <div classname="table">

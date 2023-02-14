@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Search from "./Search";
 import HomePage from "./HomePage";
-import Test from "./Skeleton";
+import Test from "./Test";
 
 
 export default function App() {

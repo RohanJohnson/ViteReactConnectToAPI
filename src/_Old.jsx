@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ThemeProvider } from "@emotion/react";
 import { theme } from "./Nav"
 import { LoadingButton } from '@mui/lab';
-import Test from './Skeleton'
+import Test from './Test'
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 

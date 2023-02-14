@@ -1,15 +1,8 @@
 import "./styles.css";
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Fade from '@mui/material/Fade';
-import Search from "./Search";
-import Movies from "./Movies";
-import HomePage from "./App";
+import { Button, Menu, MenuItem, Fade } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeProvider } from "@emotion/react";
-// import theme from "./App";
 import { Link } from "react-router-dom";
 
 
