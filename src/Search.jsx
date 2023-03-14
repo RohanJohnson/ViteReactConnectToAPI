@@ -1,17 +1,12 @@
 import React, { useState } from "react";
 import "./styles.css";
 import axios from 'axios';
-import { ThemeProvider } from "@emotion/react";
-import { theme } from "./Nav"
 import { LoadingButton } from '@mui/lab';
-import Skeleton from '@mui/material/Skeleton';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography'
-import { Table, TableRow, TableBody, TableCell, Box, LinearProgress, Fade } from '@mui/material'
+import {Skeleton, Stack, Typography, Table, TableRow, TableBody, TableCell, Box, LinearProgress, Fade } from '@mui/material'
 
 const baseURL = 'http://localhost:3000/search';
 
-const exclude = ["backdrop_path", "genre_ids", "id"];
+const exclude = ["backdrop_path","title","popularity","vote_average","vote_count", "genre_ids", "id", "poster_path", "original language", "video", "overview","original_title"];
 
 export default function Search() {
   const [loading, setLoading] = useState(false);
@@ -38,7 +33,7 @@ export default function Search() {
 
     setLoading(true);
 
-    setTimeout(() => { setLoading(false); }, 2000);
+    setTimeout(() => { setLoading(false); }, 1000+Math.random()*2000);
 
     if (loading === true) {
       console.log('loading...')
@@ -54,7 +49,6 @@ export default function Search() {
   return (
     <div className="searchcontainer">
       <div className="searchbar">
-        <ThemeProvider theme={theme}>
           <form onSubmit={(event) => searchMovies(event)}>
             <label htmlFor="search">Search movies: </label>
             <input onChange={(event) => { console.log(event.target.value) }} onKeyDown={handleEnter} type="text" id="search" name="title" required="true" ></input>
@@ -65,51 +59,44 @@ export default function Search() {
           {loading ?
             <div className="loading">
 
-              <Box sx={{margin:'0 20% 0', width: '60%' }}>
+              <Box sx={{margin:'0 20% -3%', width: '60%' }}>
                 <LinearProgress />
               </Box>
 
 
-              <Stack className="skele" spacing={1}>
-
+              <Stack className="skele" spacing={0.7}>
+              
+                <Skeleton variant="rounded" width={300} height={30} />
+                <Skeleton variant="rounded" width={120} height={30} />
+                <br></br>
                 <Skeleton variant="rounded" width={300} height={450} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
-                <Skeleton variant="rounded" width={500} height={60} />
+                <Skeleton variant="rounded" width={650} height={100} />
+                <Skeleton variant="rounded" width={250} height={120} />
 
               </Stack>
             </div> : <h1> </h1>
           }
 
-          {info != null ?
+          {info != null && !loading ?
             <div id="con">
-            <br></br><br></br><br></br>
+            <br></br>
+            <Typography variant="h5" >{info.title}</Typography>
+            <Typography variant="h6">Rating: {parseFloat(info.vote_average).toFixed(2)}/10</Typography>
+            <br></br>
               <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${info['poster_path']}`}></img>
-              <Typography varient="h1" >{info.title}</Typography>
+              <br></br>
+              <p className="overview">{info.overview}</p>
               <div classname="table">
-                <Table size="small">
+                <Table align="center" size="small">
                   <TableBody>
                     {Object.keys(info).filter((prop) => exclude.indexOf(prop) === -1).map((key) => <TableRow>
-                      <TableCell>{key}</TableCell>
+                      <TableCell>{key.replaceAll("_", " ")}</TableCell>
                       <TableCell>{`${info[key]}`}</TableCell>
                     </TableRow>)}
                   </TableBody>
                 </Table>
               </div>
             </div> : <h1></h1>}
-
-        </ThemeProvider>
       </div>
     </div>
   );
