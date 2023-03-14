@@ -12,6 +12,8 @@ const baseURL = 'http://localhost:3000/search';
 
 const exclude = ["backdrop_path", "title", "popularity", "vote_average", "vote_count", "genre_ids", "id", "poster_path", "original language", "video", "overview", "original_title"];
 
+
+
 export default function Test() {
     const [loading, setLoading] = useState(false);
     const [info, setInfo] = useState(null);
@@ -46,8 +48,10 @@ export default function Test() {
 
 
         const response = await axios(config);
-        setInfo(response.data);
+        setInfo(response.data[0]);
     }
+
+    
 
 
     return (

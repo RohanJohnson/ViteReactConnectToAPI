@@ -207,3 +207,33 @@ width: 400px;
     left: 350px;
     bottom: 450px;
 }
+
+.posterLink:hover{
+    scale: 1.2;
+    opacity: 100%;
+    /* background-color: rgb(29, 161, 242); */
+}
+
+.posterLinks:hover>.posterLink:not(:hover){
+    opacity: 50%;
+}
+
+.posterLinks{
+    width: 70vw;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.posterLink{
+    background-color: white;
+    text-align: center;
+    padding: 20px;
+    /* border: black solid 1px; */
+    margin-bottom: 10px;
+}
+
+.posterLink>p{
+    width: 250px;
+}

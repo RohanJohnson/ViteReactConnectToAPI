@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "./styles.css";
 import axios from 'axios';
 import { LoadingButton } from '@mui/lab';
-import {Skeleton, Stack, Typography, Table, TableRow, TableBody, TableCell, Box, LinearProgress, Fade } from '@mui/material'
+import { Skeleton, Stack, Typography, Table, TableRow, TableBody, TableCell, Box, LinearProgress, Fade } from '@mui/material'
 
 const baseURL = 'http://localhost:3000/search';
 
-const exclude = ["backdrop_path","title","popularity","vote_average","vote_count", "genre_ids", "id", "poster_path", "original language", "video", "overview","original_title"];
+const exclude = ["backdrop_path", "title", "popularity", "vote_average", "vote_count", "genre_ids", "id", "poster_path", "original language", "video", "overview", "original_title"];
 
 export default function Search() {
   const [loading, setLoading] = useState(false);
@@ -33,7 +33,7 @@ export default function Search() {
 
     setLoading(true);
 
-    setTimeout(() => { setLoading(false); }, 1000+Math.random()*2000);
+    setTimeout(() => { setLoading(false); }, 1000 + Math.random() * 2000);
 
     if (loading === true) {
       console.log('loading...')
@@ -42,6 +42,7 @@ export default function Search() {
 
 
     const response = await axios(config);
+    console.log(response.data[0])
     setInfo(response.data);
   }
 
@@ -49,54 +50,51 @@ export default function Search() {
   return (
     <div className="searchcontainer">
       <div className="searchbar">
-          <form onSubmit={(event) => searchMovies(event)}>
-            <label htmlFor="search">Search movies: </label>
-            <input onChange={(event) => { console.log(event.target.value) }} onKeyDown={handleEnter} type="text" id="search" name="title" required="true" ></input>
-            {/* <input type="submit" value="Search"></input> */}
-            <LoadingButton loading={loading} className="searchButton" variant="contained" type="submit">Search</LoadingButton>
-          </form>
+        <form onSubmit={(event) => searchMovies(event)}>
+          <label htmlFor="search">Search movies: </label>
+          <input onChange={(event) => { console.log(event.target.value) }} onKeyDown={handleEnter} type="text" id="search" name="title" required="true" ></input>
+          {/* <input type="submit" value="Search"></input> */}
+          <LoadingButton loading={loading} className="searchButton" variant="contained" type="submit">Search</LoadingButton>
+        </form>
 
-          {loading ?
-            <div className="loading">
+        {loading ?
+          <div className="loading">
 
-              <Box sx={{margin:'0 20% -3%', width: '60%' }}>
-                <LinearProgress />
-              </Box>
+            <Box sx={{ margin: '0 20% -3%', width: '60%' }}>
+              <LinearProgress />
+            </Box>
 
 
-              <Stack className="skele" spacing={0.7}>
-              
-                <Skeleton variant="rounded" width={300} height={30} />
-                <Skeleton variant="rounded" width={120} height={30} />
-                <br></br>
-                <Skeleton variant="rounded" width={300} height={450} />
-                <Skeleton variant="rounded" width={650} height={100} />
-                <Skeleton variant="rounded" width={250} height={120} />
+            <Stack className="skele" spacing={0.7}>
 
-              </Stack>
-            </div> : <h1> </h1>
-          }
-
-          {info != null && !loading ?
-            <div id="con">
-            <br></br>
-            <Typography variant="h5" >{info.title}</Typography>
-            <Typography variant="h6">Rating: {parseFloat(info.vote_average).toFixed(2)}/10</Typography>
-            <br></br>
-              <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${info['poster_path']}`}></img>
+              <Skeleton variant="rounded" width={300} height={30} />
+              <Skeleton variant="rounded" width={120} height={30} />
               <br></br>
-              <p className="overview">{info.overview}</p>
-              <div classname="table">
-                <Table align="center" size="small">
-                  <TableBody>
-                    {Object.keys(info).filter((prop) => exclude.indexOf(prop) === -1).map((key) => <TableRow>
-                      <TableCell>{key.replaceAll("_", " ")}</TableCell>
-                      <TableCell>{`${info[key]}`}</TableCell>
-                    </TableRow>)}
-                  </TableBody>
-                </Table>
-              </div>
-            </div> : <h1></h1>}
+              <Skeleton variant="rounded" width={300} height={450} />
+              <Skeleton variant="rounded" width={650} height={100} />
+              <Skeleton variant="rounded" width={250} height={120} />
+
+            </Stack>
+          </div> : <h1> </h1>
+        }
+
+        {info != null && !loading ?
+          <div id="con">
+            <br></br>
+
+            <ul className="posterLinks">
+              {info.map(data => (
+                <div className="posterLink">
+                <img onClick={openMovie(data['title'])}  src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${data['poster_path']}`} width="200px" height="300px"></img>
+                <p>{data['title']}</p>
+                </div>
+              ))}
+            </ul>
+
+            {/* {images(info)} */}
+            <br></br>
+
+          </div> : <h1></h1>}
       </div>
     </div>
   );
@@ -104,6 +102,18 @@ export default function Search() {
 
 
 
+function images(data) {
+
+  console.log(data)
+
+  data.forEach(element => {
+    console.log(element)
+    return (
+      <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${element['poster_path']}`}></img>
+    )
+  })
+
+}
 
 
 
@@ -141,6 +151,35 @@ export async function GetMovie(event, loading, setLoading) {
     }
   }
 }
+
+
+
+async function openMovie(name) {
+        
+
+  const searchURL = baseURL + `?title=${name}`;
+  const config = {
+      method: 'get',
+      url: searchURL,
+      headers: {}
+  };
+
+  setLoading(true);
+
+  setTimeout(() => { setLoading(false); }, 1000 + Math.random() * 2000);
+
+  if (loading === true) {
+      console.log('loading...')
+  }
+
+
+
+  const response = await axios(config);
+  setInfo(response.data[0]);
+}
+
+
+
 
 window.onbeforeunload = (event) => {
   const e = event || window.event;
