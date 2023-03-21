@@ -5,7 +5,12 @@ export default function HomePage() {
   return (
     <div className="content">
 
-        <Typography> Welcome to the Movie Database</Typography>
+      <br></br>
+      <Typography variant="h4"> Welcome to the Movie Database</Typography>
+      <br></br>
+      <hr></hr>
+      <br></br>
+      <Typography> Next to do: Login Logout Signup pages on left bar</Typography>
 
     </div>
   );
