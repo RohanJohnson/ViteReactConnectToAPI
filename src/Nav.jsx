@@ -52,7 +52,7 @@ export default function FadeMenu() {
             <MenuItem onClick={handleClose}>Search Movie</MenuItem>
           </Link>
           <Link to="/test" style={{ textDecoration: 'none', color: 'rgba(29, 161, 242, 1)' }}>
-            <MenuItem onClick={handleClose}>Test</MenuItem>
+            <MenuItem onClick={handleClose}>Test2</MenuItem>
           </Link>
         </Menu>
       </div>
