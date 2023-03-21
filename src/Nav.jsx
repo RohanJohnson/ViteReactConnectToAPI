@@ -1,46 +1,3 @@
-
-// export default function FadeMenu() {
-//   const [state, setState] = React.useState({
-//     top: false,
-//     left: false,
-//     bottom: false,
-//     right: false,
-//   });
-
-//     const toggleDrawer = (anchor, open) => (event) => {
-//       if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-//         return;
-//       }
-
-//       setState({ ...state, [anchor]: open });
-//     };
-
-//   const [anchorEl, setAnchorEl] = React.useState(null);
-//   const open = Boolean(anchorEl);
-//   const handleClick = (event) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-//   const handleClose = () => {
-//     setAnchorEl(null);
-//   };
-
-//   return (
-//     <div className="navbar">
-
-//       <div className="logo">Movie Database</div>
-
-//       <div className="leftBar">
-
-
-
-//       </div>
-
-//     </div>
-//   );
-
-
-// }
-
 import * as React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -61,6 +18,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import HomeIcon from '@mui/icons-material/Home';
+import MovieIcon from '@mui/icons-material/Movie';
+import SearchIcon from '@mui/icons-material/Search';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Search from "./Search";
 import HomePage from "./HomePage";
@@ -68,7 +29,7 @@ import Test from "./Test";
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Movies from "./Movies";
-import { Link } from '@mui/material';
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -150,7 +111,9 @@ export default function MiniDrawer() {
   };
 
   return (
+    
     <Box sx={{ display: 'flex' }}>
+    <Router>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
         <Toolbar>
@@ -179,38 +142,118 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-        <Link to="/" style={{ textDecoration: 'none' }}>
-          <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
-          
-          
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? 'initial' : 'center',
-                px: 2.5,
-              }}
-            >
-            
-              <ListItemIcon
+
+          <Link to="/" style={{ textDecoration: 'none' }}>
+            <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
+
+
+              <ListItemButton
                 sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : 'auto',
-                  justifyContent: 'center',
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
                 }}
               >
-                {<MailIcon />}
-                
-              </ListItemIcon>
-              <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-            
-          </ListItem>
+
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {<HomeIcon />}
+
+                </ListItemIcon>
+                <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+
+            </ListItem>
           </Link>
-          <ListItem key="Popular" disablePadding sx={{ display: 'block' }}>
-            <Link to="/movies">
-              text
-            </Link>
-          </ListItem>
+
+          <Link to="/movies" style={{ textDecoration: 'none' }}>
+            <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
+
+
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {<MovieIcon />}
+
+                </ListItemIcon>
+                <ListItemText primary="Popular Movies" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+
+            </ListItem>
+          </Link>
+
+          <Link to="/searchmovie" style={{ textDecoration: 'none' }}>
+            <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
+
+
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {<SearchIcon />}
+
+                </ListItemIcon>
+                <ListItemText primary="Search Movies" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+
+            </ListItem>
+          </Link>
+
+          <Link to="/test" style={{ textDecoration: 'none' }}>
+            <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
+
+
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? 'initial' : 'center',
+                  px: 2.5,
+                }}
+              >
+
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : 'auto',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {<QuestionMarkIcon />}
+
+                </ListItemIcon>
+                <ListItemText primary="Test" sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
+
+            </ListItem>
+          </Link>
         </List>
 
 
@@ -248,7 +291,7 @@ export default function MiniDrawer() {
         <Typography paragraph>
           Nihil!
         </Typography> */}
-        <Router>
+        
           <Routes>
             <Route path="/" exact element={<HomePage />} />
             <Route path="/movies" element={<Movies />} />
@@ -257,8 +300,9 @@ export default function MiniDrawer() {
             <Route path="/login" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
           </Routes>
+          </Box>
         </Router>
-      </Box>
+      
     </Box>
   );
 }

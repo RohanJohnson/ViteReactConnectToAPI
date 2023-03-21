@@ -69,19 +69,23 @@ export default function Search() {
 
             <div className="skele" spacing={0}>
 
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
-
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+              <Skeleton animation="wave" className="skeleChild" variant="rounded" width="200px" height="300px" />
+            
             </div>
           </div> : <h1> </h1>
         }

@@ -95,7 +95,7 @@ export default function Test() {
                         <div id="testcon">
                             <Typography variant="h6" >{info.title}</Typography>
                             <br></br>
-                            <p id="testoverview">{info.overview}</p>
+                            <Typography variant="p" id="testoverview">{info.overview}</Typography>
 
                             <div id="testtable">
                                 <Table align="center" size="small">
