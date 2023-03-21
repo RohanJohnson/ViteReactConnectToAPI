@@ -49,9 +49,10 @@ export default function Search() {
 
 
   return (
+    <div className="content">
     <div className="searchcontainer">
       <div className="searchbar">
-        <form onSubmit={(event) => searchMovies(event)}>
+        <form className="searchForm" onSubmit={(event) => searchMovies(event)}>
           <label htmlFor="search">Search movies: </label>
           <input onChange={(event) => { console.log(event.target.value) }} onKeyDown={handleEnter} type="text" id="search" name="title" required="true" ></input>
           {/* <input type="submit" value="Search"></input> */}
@@ -123,6 +124,7 @@ export default function Search() {
             </div>
           </div> : <h1></h1>}
       </div>
+    </div>
     </div>
   );
 }

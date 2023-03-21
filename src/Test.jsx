@@ -55,6 +55,7 @@ export default function Test() {
 
 
     return (
+        <div className="content">
         <div className="searchcontainer">
             <div className="searchbar">
                 <form onSubmit={(event) => searchMovies(event)}>
@@ -109,6 +110,7 @@ export default function Test() {
                         </div>
                     </div> : <h1></h1>}
             </div>
+        </div>
         </div>
     );
 }

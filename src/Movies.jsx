@@ -30,9 +30,11 @@ export default function Movies() {
   // let mov = post.join('\r\n');
 
   return (
+    <div className="content">
     <div className="popular"
       dangerouslySetInnerHTML={{ __html: mov }}
     />
+    </div>
   );
 }
 

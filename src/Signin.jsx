@@ -15,6 +15,7 @@ const config = {
 export default function SignIn() {
 
     return (
+        <div className="content">
         <div className="container">
             <form onSubmit={(event) => handleSubmit(event)}>
                 <label htmlFor="email">Email: </label>
@@ -29,6 +30,7 @@ export default function SignIn() {
 
                 <Button className="searchButton" variant="outlined" type="submit">Sign In</Button>
             </form>
+        </div>
         </div>
     )
 }
