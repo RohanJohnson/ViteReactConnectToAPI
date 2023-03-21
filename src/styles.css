@@ -144,9 +144,7 @@ a:hover {
     margin: 2vw;
 }
 
-#con :last-child {
-    margin: 2vh 0 0;
-}
+
 
 .MuiTable-root {
     border-collapse: collapse;
@@ -161,11 +159,11 @@ a:hover {
 
 
 
-.skele {
+/* .skele {
     width: 100%;
     margin-top: 5vw;
     align-items: center;
-}
+} */
 
 .overview{
     text-align: center;
@@ -211,14 +209,15 @@ width: 400px;
 .posterLink:hover{
     scale: 1.2;
     opacity: 100%;
-    /* background-color: rgb(29, 161, 242); */
 }
 
-.posterLinks:hover>.posterLink:not(:hover){
+.posterLinks>.posterLink:not(:hover){
     opacity: 50%;
 }
 
-.posterLinks{
+
+
+.posterLinks, .skele{
     width: 70vw;
     justify-content: space-between;
     display: flex;
@@ -226,11 +225,11 @@ width: 400px;
     flex-direction: row;
 }
 
-.posterLink{
-    background-color: white;
+
+
+.posterLink, .skeleChild{
     text-align: center;
     padding: 20px;
-    /* border: black solid 1px; */
     margin-bottom: 10px;
 }
 

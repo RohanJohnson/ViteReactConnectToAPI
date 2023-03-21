@@ -11,6 +11,7 @@ const exclude = ["backdrop_path", "title", "popularity", "vote_average", "vote_c
 export default function Search() {
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState(null);
+  const [selected, setSelected] = useState()
   const [param, setParam] = useState("")
 
   function handleEnter(event) {
@@ -65,35 +66,61 @@ export default function Search() {
             </Box>
 
 
-            <Stack className="skele" spacing={0.7}>
+            <div className="skele" spacing={0}>
 
-              <Skeleton variant="rounded" width={300} height={30} />
-              <Skeleton variant="rounded" width={120} height={30} />
-              <br></br>
-              <Skeleton variant="rounded" width={300} height={450} />
-              <Skeleton variant="rounded" width={650} height={100} />
-              <Skeleton variant="rounded" width={250} height={120} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
+              <Skeleton className="skeleChild" variant="rounded" width={200} height={300} />
 
-            </Stack>
+            </div>
           </div> : <h1> </h1>
         }
 
-        {info != null && !loading ?
+        {info != null && !loading && !selected ?
           <div id="con">
             <br></br>
 
             <ul className="posterLinks">
               {info.map(data => (
                 <div className="posterLink">
-                <img onClick={openMovie(data['title'])}  src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${data['poster_path']}`} width="200px" height="300px"></img>
-                <p>{data['title']}</p>
+                  <img onClick={openMovie} src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${data['poster_path']}`} width="200px" height="300px"></img>
+                  <p>{data['title']}</p>
                 </div>
               ))}
             </ul>
-
-            {/* {images(info)} */}
             <br></br>
 
+          </div> : <h1></h1>}
+
+        {selected ?
+          <div id="test">
+            <br></br>
+            <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${info['poster_path']}`}></img>
+            <div id="testcon">
+              <Typography variant="h6" >{info.title}</Typography>
+              <br></br>
+              <p id="testoverview">{info.overview}</p>
+
+              <div id="testtable">
+                <Table align="center" size="small">
+                  <TableBody>
+                    {Object.keys(info).filter((prop) => exclude.indexOf(prop) === -1).map((key) => <TableRow>
+                      <TableCell>{key.replaceAll("_", " ")}</TableCell>
+                      <TableCell>{`${info[key]}`}</TableCell>
+                    </TableRow>)}
+                  </TableBody>
+                </Table>
+              </div>
+            </div>
           </div> : <h1></h1>}
       </div>
     </div>
@@ -155,13 +182,13 @@ export async function GetMovie(event, loading, setLoading) {
 
 
 async function openMovie(name) {
-        
+
 
   const searchURL = baseURL + `?title=${name}`;
   const config = {
-      method: 'get',
-      url: searchURL,
-      headers: {}
+    method: 'get',
+    url: searchURL,
+    headers: {}
   };
 
   setLoading(true);
@@ -169,13 +196,13 @@ async function openMovie(name) {
   setTimeout(() => { setLoading(false); }, 1000 + Math.random() * 2000);
 
   if (loading === true) {
-      console.log('loading...')
+    console.log('loading...')
   }
 
 
 
   const response = await axios(config);
-  setInfo(response.data[0]);
+  setSelected(response.data[0]);
 }
 
 
