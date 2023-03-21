@@ -46,10 +46,13 @@
 
 .searchForm{
     display: flex;
+    flex-wrap: nowrap;
 }
 
 .searchButton{
     width: 10%;
+    top: 5px;
+    height: 30px;
 }
 
 main{
@@ -117,7 +120,8 @@ h1 {
 form {
     display: flex;
     flex-direction: row;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    
     justify-content: center;
     margin: 20px;
     color: rgb(29, 161, 242);
@@ -130,6 +134,7 @@ form {
 input {
     width: 40vw;
     padding: 5px;
+    margin: 5px;
 }
 
 .home {
@@ -274,4 +279,20 @@ padding: 20px;
 
 .content{
 width: 90%;
+}
+
+.formContainer{
+    width: 50vw;
+}
+
+.formButton{
+    margin: 10px;
+}
+
+.spacing{
+    opacity: 0;
+}
+
+.hiddenData{
+    display: none;
 }

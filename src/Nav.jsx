@@ -22,6 +22,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import MovieIcon from '@mui/icons-material/Movie';
 import SearchIcon from '@mui/icons-material/Search';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PersonIcon from '@mui/icons-material/Person';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Search from "./Search";
 import HomePage from "./HomePage";
@@ -29,10 +32,13 @@ import Test from "./Test";
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Movies from "./Movies";
+import Specific from "./Specific"
 import { Link } from "react-router-dom";
 
+// Width of the left menu
 const drawerWidth = 240;
 
+// Open menu transition
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
@@ -42,6 +48,7 @@ const openedMixin = (theme) => ({
   overflowX: 'hidden',
 });
 
+// Close menu transition
 const closedMixin = (theme) => ({
   transition: theme.transitions.create('width', {
     easing: theme.transitions.easing.sharp,
@@ -54,6 +61,7 @@ const closedMixin = (theme) => ({
   },
 });
 
+// Head of the left menu
 export const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -63,6 +71,7 @@ export const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
+// Top header
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
@@ -81,6 +90,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+// Initialising thedraw itself
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
@@ -98,6 +108,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
+
+// Default function -- source: MUI documentation
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -111,187 +123,194 @@ export default function MiniDrawer() {
   };
 
   return (
-    
+
     <Box sx={{ display: 'flex' }}>
-    <Router>
-      <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: 5,
-              ...(open && { display: 'none' }),
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Movie Database
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer variant="permanent" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
+      <Router>
+        <CssBaseline />
+        <AppBar position="fixed" open={open}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: 5,
+                ...(open && { display: 'none' }),
+              }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap component="div">
+              Movie Database
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer variant="permanent" open={open}>
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <List>
 
-          <Link to="/" style={{ textDecoration: 'none' }}>
-            <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
+            <Link to="/" style={{ textDecoration: 'none' }}>
+              <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
 
 
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-
-                <ListItemIcon
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {<HomeIcon />}
 
-                </ListItemIcon>
-                <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {<HomeIcon />}
 
-            </ListItem>
-          </Link>
+                  </ListItemIcon>
+                  <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
 
-          <Link to="/movies" style={{ textDecoration: 'none' }}>
-            <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
+              </ListItem>
+            </Link>
+
+            <Link to="/movies" style={{ textDecoration: 'none' }}>
+              <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
 
 
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-
-                <ListItemIcon
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {<MovieIcon />}
 
-                </ListItemIcon>
-                <ListItemText primary="Popular Movies" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {<MovieIcon />}
 
-            </ListItem>
-          </Link>
+                  </ListItemIcon>
+                  <ListItemText primary="Popular Movies" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
 
-          <Link to="/searchmovie" style={{ textDecoration: 'none' }}>
-            <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
+              </ListItem>
+            </Link>
+
+            <Link to="/searchmovie" style={{ textDecoration: 'none' }}>
+              <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
 
 
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-
-                <ListItemIcon
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {<SearchIcon />}
 
-                </ListItemIcon>
-                <ListItemText primary="Search Movies" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {<SearchIcon />}
 
-            </ListItem>
-          </Link>
+                  </ListItemIcon>
+                  <ListItemText primary="Search Movies" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
 
-          <Link to="/test" style={{ textDecoration: 'none' }}>
-            <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
+              </ListItem>
+            </Link>
+
+            <Link to="/test" style={{ textDecoration: 'none' }}>
+              <ListItem key="Test" disablePadding sx={{ display: 'block' }}>
 
 
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-
-                <ListItemIcon
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {<QuestionMarkIcon />}
 
-                </ListItemIcon>
-                <ListItemText primary="Test" sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {<QuestionMarkIcon />}
 
-            </ListItem>
-          </Link>
-        </List>
+                  </ListItemIcon>
+                  <ListItemText primary="Test" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+
+              </ListItem>
+            </Link>
+          </List>
 
 
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
+          <Divider />
+          <List>
+
+            <Link to="/login" style={{ textDecoration: 'none' }}>
+              <ListItem key="Test" disablePadding sx={{ display: 'block' }}>
+
+
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
+                    minHeight: 48,
+                    justifyContent: open ? 'initial' : 'center',
+                    px: 2.5,
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <Box className="main" component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        {/* <Typography paragraph>
+
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : 'auto',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {<LoginIcon />}
+
+                  </ListItemIcon>
+                  <ListItemText primary="Login" sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+
+              </ListItem>
+            </Link>
+
+          </List>
+        </Drawer>
+        <Box className="main" component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
+          {/* <Typography paragraph>
           Lorem ipsum dolor sit amet.
         </Typography>
         <Typography paragraph>
           Nihil!
         </Typography> */}
-        
+
           <Routes>
             <Route path="/" exact element={<HomePage />} />
             <Route path="/movies" element={<Movies />} />
@@ -299,10 +318,11 @@ export default function MiniDrawer() {
             <Route path="/test" element={<Test />} />
             <Route path="/login" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/movie/:id" element={<Specific />} />
           </Routes>
-          </Box>
-        </Router>
-      
+        </Box>
+      </Router>
+
     </Box>
   );
 }

@@ -15,8 +15,7 @@ const config = {
 export default function SignIn() {
 
     return (
-        <div className="content">
-        <div className="container">
+        <div className="formContainer">
             <form onSubmit={(event) => handleSubmit(event)}>
                 <label htmlFor="email">Email: </label>
                 <input type="email" id="email" name="email" required={true} ></input>
@@ -28,9 +27,16 @@ export default function SignIn() {
 
                 <br />
 
-                <Button className="searchButton" variant="outlined" type="submit">Sign In</Button>
+                <Button href="/" className="formButton" variant="outlined">Cancel</Button>
+                <div className="spacing">...</div>
+                <Button className="formButton" variant="contained" type="submit">Sign In</Button>
+                
             </form>
-        </div>
+            <br></br>
+            <hr></hr>
+            <br></br>
+            <Typography variant="h6">Dont have an account?</Typography>
+            <Button href="/signup" className="formButton" variant="contained">Sign Up</Button>
         </div>
     )
 }

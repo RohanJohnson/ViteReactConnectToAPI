@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./styles.css";
 import axios from 'axios';
 import { LoadingButton } from '@mui/lab';
-import { Skeleton, Stack, Typography, Table, TableRow, TableBody, TableCell, Box, LinearProgress, Fade } from '@mui/material'
+import { Skeleton, Stack, Typography, Table, TableRow, TableBody, TableCell, Box, LinearProgress, Fade } from '@mui/material';
+import { Link } from "react-router-dom";
 
 const baseURL = 'http://localhost:3000/search';
 
@@ -90,43 +91,26 @@ export default function Search() {
           </div> : <h1> </h1>
         }
 
-        {info != null && !loading && !selected ?
+        {info != null && !loading ?
           <div id="con">
             <br></br>
 
             <ul className="posterLinks">
               {info.map(data => (
+                <Link to={`/movie/`+data['id']}>
                 <div className="posterLink">
                   <img onClick={openMovie} src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${data['poster_path']}`} width="200px" height="300px"></img>
                   <p>{data['title']}</p>
+                  <p className="hiddenData">{data['id']}</p>
                 </div>
+                </Link>
               ))}
             </ul>
             <br></br>
 
           </div> : <h1></h1>}
 
-        {selected ?
-          <div id="test">
-            <br></br>
-            <img src={`https://www.themoviedb.org/t/p/w300_and_h450_bestv2${info['poster_path']}`}></img>
-            <div id="testcon">
-              <Typography variant="h6" >{info.title}</Typography>
-              <br></br>
-              <p id="testoverview">{info.overview}</p>
-
-              <div id="testtable">
-                <Table align="center" size="small">
-                  <TableBody>
-                    {Object.keys(info).filter((prop) => exclude.indexOf(prop) === -1).map((key) => <TableRow>
-                      <TableCell>{key.replaceAll("_", " ")}</TableCell>
-                      <TableCell>{`${info[key]}`}</TableCell>
-                    </TableRow>)}
-                  </TableBody>
-                </Table>
-              </div>
-            </div>
-          </div> : <h1></h1>}
+        
       </div>
     </div>
     </div>

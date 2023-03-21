@@ -54,7 +54,7 @@ export default function SignUp() {
 
             <br />
 
-            <Button className="searchButton" variant="outlined" type="submit">Sign Up</Button>
+            <Button className="formButton" variant="outlined" type="submit">Sign Up</Button>
           </form>
         </div>
         </div>
