@@ -179,7 +179,7 @@ export default function MiniDrawer() {
         </DrawerHeader>
         <Divider />
         <List>
-        <Link to="./" style={{ textDecoration: 'none' }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <ListItem key="Home" disablePadding sx={{ display: 'block' }}>
           
           
@@ -205,8 +205,12 @@ export default function MiniDrawer() {
             </ListItemButton>
             
           </ListItem>
-          
           </Link>
+          <ListItem key="Popular" disablePadding sx={{ display: 'block' }}>
+            <Link to="/movies">
+              text
+            </Link>
+          </ListItem>
         </List>
 
 
