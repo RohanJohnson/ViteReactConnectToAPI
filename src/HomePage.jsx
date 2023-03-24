@@ -10,7 +10,7 @@ export default function HomePage() {
       <br></br>
       <hr></hr>
       <br></br>
-      <Typography> Next to do: Login Logout Signup pages on left bar</Typography>
+      <Typography> Next to do: Specific movie page fix & Login Logout Signup pages on left bar</Typography>
 
     </div>
   );

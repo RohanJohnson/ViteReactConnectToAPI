@@ -236,7 +236,7 @@ padding: 20px;
     opacity: 100%;
 }
 
-.posterLinks>.posterLink:not(:hover){
+.posterLinks .posterLink:not(:hover){
     opacity: 50%;
 }
 
