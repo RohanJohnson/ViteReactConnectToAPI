@@ -35,7 +35,7 @@ export default function Search() {
 
     setLoading(true);
 
-    setTimeout(() => { setLoading(false); }, 1000 + Math.random() * 2000);
+    setTimeout(() => { setLoading(false); }, 1000 + Math.random() * 1500);
 
     if (loading === true) {
       console.log('loading...')

@@ -296,3 +296,17 @@ width: 90%;
 .hiddenData{
     display: none;
 }
+
+.flex{
+    display: flex;
+    width:40vw;
+}
+
+.flex>p{
+    text-align: left;
+    margin-left: 10px;
+}
+
+.head{
+    color:white;
+}

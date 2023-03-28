@@ -139,9 +139,9 @@ export default function MiniDrawer() {
                 ...(open && { display: 'none' }),
               }}
             >
-              <MenuIcon />
+              <MenuIcon color="white" />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
+            <Typography className="head" variant="h6" noWrap component="div">
               Movie Database
             </Typography>
           </Toolbar>
